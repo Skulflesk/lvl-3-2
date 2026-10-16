@@ -1,6 +1,9 @@
 var canvas = document.getElementById("myCanvas");
 var context = canvas.getContext("2d");
 
+var score1 = 0;
+var score2 = 0;
+
 var player1 = new GameObject();
 
 player1.x = 50;
@@ -30,6 +33,13 @@ function animate()
 {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
+           context.font = "30px Arial";
+    context.fillStyle = "red";
+    context.fillText(score1, canvas.width / 2 - 60, 40);
+
+    context.fillStyle = "blue";
+    context.fillText(score2, canvas.width / 2 + 40, 40);
+    
     player1.drawRect();
     player2.drawRect();
     ball.drawCircle();
@@ -37,8 +47,14 @@ function animate()
     ball.x += ball.xSpeed;
     ball.y += ball.ySpeed;
 
+context.font = "30px Arial";
+context.fillStyle = "black";
+context.fillText("Score: " + score, 400, 40);
+
     if (ball.x + ball.radius >= canvas.width)
     {
+        score1++;
+
         ball.x = 500;
         ball.y = 250;
         ball.xSpeed = 5;
@@ -62,6 +78,8 @@ function animate()
 
     if (ball.x - ball.radius <= 0)
     {
+        score2++;
+
         ball.x = 500;
         ball.y = 250;
         ball.xSpeed = 5;
